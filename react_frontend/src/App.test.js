@@ -3,5 +3,6 @@ import App from "./App";
 
 test("renders login page when unauthenticated", () => {
   render(<App />);
-  expect(screen.getByText(/sign in/i)).toBeInTheDocument();
+  // "Sign in" appears in multiple places (title + button). Use an unambiguous query.
+  expect(screen.getByRole("button", { name: /sign in/i })).toBeInTheDocument();
 });
