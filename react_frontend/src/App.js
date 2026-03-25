@@ -1,48 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import "./components/shell.css";
+import "./styles/pages.css";
+
+import { AuthProvider } from "./contexts/AuthContext";
+import { RequireAuth } from "./routes/Guards";
+import { AppShell } from "./components/AppShell";
+
+import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import DefectsPage from "./pages/DefectsPage";
+import DefectDetailPage from "./pages/DefectDetailPage";
+import CorrectiveActionsPage from "./pages/CorrectiveActionsPage";
+import ReportsPage from "./pages/ReportsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 // PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
+  /** React application entrypoint: routing + auth provider + main layout. */
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/app/dashboard" replace />} />
+          <Route path="/login" element={<LoginPage />} />
+
+          <Route element={<RequireAuth />}>
+            <Route path="/app" element={<AppShell />}>
+              <Route path="dashboard" element={<DashboardPage />} />
+              <Route path="defects" element={<DefectsPage />} />
+              <Route path="defects/:id" element={<DefectDetailPage />} />
+              <Route path="corrective-actions" element={<CorrectiveActionsPage />} />
+              <Route path="reports" element={<ReportsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

@@ -1,0 +1,294 @@
+:root {
+  --primary: #3b82f6;
+  --success: #06b6d4;
+  --danger: #ef4444;
+
+  --bg: #f9fafb;
+  --surface: #ffffff;
+  --text: #111827;
+  --text-muted: #64748b;
+  --border: #e5e7eb;
+
+  --shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
+  --radius: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.mqms-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+
+.mqms-sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 20;
+}
+
+.mqms-sidebar__brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.mqms-brand-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--success));
+}
+
+.mqms-brand-title {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 16px;
+}
+.mqms-brand-subtitle {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.mqms-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 4px;
+}
+
+.mqms-nav-item {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+}
+.mqms-nav-item:hover {
+  background: rgba(59, 130, 246, 0.07);
+  border-color: rgba(59, 130, 246, 0.18);
+}
+.mqms-nav-item.is-active {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+.mqms-sidebar__footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mqms-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mqms-topbar {
+  height: 56px;
+  background: rgba(249, 250, 251, 0.7);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.mqms-topbar__menu {
+  display: none;
+}
+
+.mqms-content {
+  padding: 18px;
+}
+
+.mqms-user-pill {
+  font-size: 13px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: var(--surface);
+}
+
+.mqms-btn {
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: var(--primary);
+  color: white;
+}
+
+.mqms-btn--ghost {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+.mqms-btn--ghost:hover {
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.mqms-btn--danger {
+  background: var(--danger);
+  color: white;
+}
+
+.mqms-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.mqms-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.mqms-card__header {
+  padding: 14px 14px 8px 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mqms-card__title {
+  font-weight: 800;
+}
+.mqms-card__subtitle {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.mqms-card__body {
+  padding: 0 14px 14px 14px;
+}
+
+.mqms-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+.mqms-table th,
+.mqms-table td {
+  text-align: left;
+  padding: 10px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.mqms-table th {
+  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 12px;
+}
+.mqms-table tr:hover td {
+  background: rgba(59, 130, 246, 0.04);
+}
+
+.mqms-input,
+.mqms-select,
+.mqms-textarea {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font: inherit;
+  color: var(--text);
+}
+.mqms-textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.mqms-field {
+  display: grid;
+  gap: 6px;
+}
+.mqms-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.mqms-badge {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  background: rgba(100, 116, 139, 0.06);
+}
+.mqms-badge--open {
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #b91c1c;
+  background: rgba(239, 68, 68, 0.08);
+}
+.mqms-badge--closed {
+  border-color: rgba(6, 182, 212, 0.25);
+  color: #0e7490;
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.mqms-scrim {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .mqms-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .mqms-topbar__menu {
+    display: inline-flex;
+  }
+
+  .mqms-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-105%);
+    transition: transform 0.2s ease;
+    width: 280px;
+  }
+
+  .mqms-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .mqms-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(17, 24, 39, 0.35);
+    z-index: 15;
+  }
+}
